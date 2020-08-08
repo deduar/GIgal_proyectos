@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Project;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,8 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::latest()->paginate(2);
-        return view('projects.index',compact('projects'))->with('i',(request()->input('page',1)-1)*5);
+        
+        return view('projects.index',compact('projects'))->with('i',(request()->input('page',1)-1)*2);
     }
 
     /**
@@ -35,7 +37,9 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('projects.create');
+        $categories = Category::all(['id','name']);
+        return view('projects.create',compact('categories'));
+        //return view('projects.create');
     }
 
     /**
@@ -49,6 +53,7 @@ class ProjectController extends Controller
         $request->validate([
             'name' => 'required',
             'code' => 'required',
+            'category_id' => 'required',
             'description' => 'required',
         ]);
   

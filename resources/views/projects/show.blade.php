@@ -55,6 +55,11 @@
                                 <strong>Code:</strong>
                                 {{ $project->code }}
                             </div>
+                            <div class="form-group">
+                                <strong>Category:</strong>
+                                {{ $project->category->name }}
+                                <p>{{ $project->category->description }}</p>
+                            </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">

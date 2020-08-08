@@ -18,7 +18,9 @@ class CreateProjectTable extends Migration
             $table->string('name');
             $table->string('code');
             $table->text('description');
+            $table->unsignedBigInteger('category_id');
             $table->timestamps();
+            $table->foreign('category_id')->references('id')->on('category')->onDelete('cascade');
         });
     }
 

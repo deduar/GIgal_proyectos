@@ -73,6 +73,17 @@
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
+                                    <strong>Category:</strong>
+                                    <select class="form-control input-lg" id="category_id" name="category_id" >
+                                        <option></option>
+                                        @foreach($categories as $category)
+                                            <option value="{{ $category->id }}">{{ $category->name }} </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
                                     <strong>Description:</strong>
                                     <textarea class="form-control" style="height:280px" name="description" placeholder="Description"></textarea>
                                 </div>

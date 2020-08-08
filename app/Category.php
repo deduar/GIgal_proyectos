@@ -8,4 +8,12 @@ class Category extends Model
 {
     protected $table = 'category';
     protected $fillable = ['name', 'description'];
+
+    /**
+     * Get the projects that omn the categoy.
+     */
+    public function project()
+    {
+        return $this->hasMany('App\Projects');
+    }
 }
