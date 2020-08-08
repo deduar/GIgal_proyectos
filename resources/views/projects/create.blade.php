@@ -34,21 +34,20 @@
                     </div>
                     @endif
 
-
                     <div class="row">
                         <div class="col-lg-12 margin-tb">
                             <div class="float-left">
-                                <h2>Edit Category</h2>
+                                <h2>Create New Project</h2>
                             </div>
                             <div class="float-right">
-                                <a class="btn btn-primary" href="{{ route('category.index') }}"> Back</a>
+                                <a class="btn btn-primary" href="{{ route('project.index') }}"> Back</a>
                             </div>
                         </div>
                     </div>
 
                     @if ($errors->any())
                     <div class="alert alert-danger">
-                        <strong>Warning!</strong> Please check input field code<br><br>
+                        <strong>Warning!</strong> Please check your input code<br><br>
                         <ul>
                             @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
@@ -57,21 +56,25 @@
                     </div>
                     @endif
 
-                    <form action="{{ route('category.update',$category->id) }}" method="POST">
+                    <form action="{{ route('project.store') }}" method="POST">
                         @csrf
-                        @method('PUT')
-
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <strong>Name:</strong>
-                                    <input type="text" name="name" value="{{ $category->name }}" class="form-control" placeholder="Name">
+                                    <input type="text" name="name" class="form-control" placeholder="Name">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <strong>Code:</strong>
+                                    <input type="text" name="code" class="form-control" placeholder="Code">
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <strong>Description:</strong>
-                                    <textarea class="form-control" style="height:150px" name="description" placeholder="Description">{{ $category->description }}</textarea>
+                                    <textarea class="form-control" style="height:280px" name="description" placeholder="Description"></textarea>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
@@ -80,8 +83,6 @@
                         </div>
 
                     </form>
-
-
 
                 </div>
             </div>

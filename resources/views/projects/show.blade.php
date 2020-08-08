@@ -34,54 +34,35 @@
                     </div>
                     @endif
 
-
                     <div class="row">
                         <div class="col-lg-12 margin-tb">
                             <div class="float-left">
-                                <h2>Edit Category</h2>
+                                <h2> Show Project</h2>
                             </div>
                             <div class="float-right">
-                                <a class="btn btn-primary" href="{{ route('category.index') }}"> Back</a>
+                                <a class="btn btn-primary" href="{{ route('project.index') }}"> Back</a>
                             </div>
                         </div>
                     </div>
 
-                    @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <strong>Warning!</strong> Please check input field code<br><br>
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    @endif
-
-                    <form action="{{ route('category.update',$category->id) }}" method="POST">
-                        @csrf
-                        @method('PUT')
-
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <strong>Name:</strong>
-                                    <input type="text" name="name" value="{{ $category->name }}" class="form-control" placeholder="Name">
-                                </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <strong>Name:</strong>
+                                {{ $project->name }}
                             </div>
-                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <strong>Description:</strong>
-                                    <textarea class="form-control" style="height:150px" name="description" placeholder="Description">{{ $category->description }}</textarea>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                            <div class="form-group">
+                                <strong>Code:</strong>
+                                {{ $project->code }}
                             </div>
                         </div>
-
-                    </form>
-
-
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <strong>Description:</strong>
+                                {{ $project->description }}
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
             </div>

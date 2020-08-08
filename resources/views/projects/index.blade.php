@@ -26,7 +26,6 @@
                         </div>
                     </nav>
                 </div>
-
                 <div class="card-body">
                     @if (session('status'))
                     <div class="alert alert-success" role="alert">
@@ -34,54 +33,53 @@
                     </div>
                     @endif
 
-
                     <div class="row">
                         <div class="col-lg-12 margin-tb">
                             <div class="float-left">
-                                <h2>Edit Category</h2>
+                                <h2>All Projects</h2>
                             </div>
                             <div class="float-right">
-                                <a class="btn btn-primary" href="{{ route('category.index') }}"> Back</a>
+                                <a class="btn btn-success" href="{{ route('project.create') }}"> Create new Project</a>
                             </div>
                         </div>
                     </div>
 
-                    @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <strong>Warning!</strong> Please check input field code<br><br>
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
+                    @if ($message = Session::get('success'))
+                    <div class="alert alert-success">
+                        <p>{{ $message }}</p>
                     </div>
                     @endif
 
-                    <form action="{{ route('category.update',$category->id) }}" method="POST">
-                        @csrf
-                        @method('PUT')
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>Name</th>
+                            <th>Code</th>
+                            <th>Description</th>
+                            <th width="250px">Action</th>
+                        </tr>
+                        @foreach ($projects as $project)
+                        <tr>
+                            <td>{{ $project->name }}</td>
+                            <td>{{ $project->code }}</td>
+                            <td>{{ $project->description }}</td>
+                            <td>
+                                <form action="{{ route('project.destroy',$project->id) }}" method="POST">
 
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <strong>Name:</strong>
-                                    <input type="text" name="name" value="{{ $category->name }}" class="form-control" placeholder="Name">
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <strong>Description:</strong>
-                                    <textarea class="form-control" style="height:150px" name="description" placeholder="Description">{{ $category->description }}</textarea>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </div>
-                        </div>
+                                    <a class="btn btn-info" href="{{ route('project.show',$project->id) }}">Show</a>
 
-                    </form>
+                                    <a class="btn btn-primary" href="{{ route('project.edit',$project->id) }}">Edit</a>
 
+                                    @csrf
+                                    @method('DELETE')
 
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </table>
+
+                    {!! $projects->links() !!}
 
                 </div>
             </div>

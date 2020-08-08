@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
+use App\Project;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class ProjectController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -24,8 +24,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::latest()->paginate(2);
-        return view('categories.index',compact('categories'))->with('i',(request()->input('page',1)-1)*5);
+        $projects = Project::latest()->paginate(2);
+        return view('projects.index',compact('projects'))->with('i',(request()->input('page',1)-1)*5);
     }
 
     /**
@@ -35,7 +35,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('categories.create');
+        return view('projects.create');
     }
 
     /**
@@ -48,68 +48,70 @@ class CategoryController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'code' => 'required',
             'description' => 'required',
         ]);
   
-        Category::create($request->all());
+        Project::create($request->all());
    
-        return redirect()->route('category.index')
-                        ->with('success','Category created successfully.');
+        return redirect()->route('project.index')
+                        ->with('success','Project created successfully.');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Category  $category
+     * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show(Project $project)
     {
-        return view('categories.show',compact('category'));
+        return view('projects.show',compact('project'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Category  $category
+     * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit(Project $project)
     {
-        return view('categories.edit',compact('category'));
+        return view('projects.edit',compact('project'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Category  $category
+     * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, Project $project)
     {
         $request->validate([
             'name' => 'required',
+            'code' => 'required',
             'description' => 'required',
         ]);
   
-        $category->update($request->all());
+        $project->update($request->all());
   
-        return redirect()->route('category.index')
-                        ->with('success','Categort updated successfully');
+        return redirect()->route('project.index')
+                        ->with('success','Project updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Category  $category
+     * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy(Project $project)
     {
-        $category->delete();
+        $project->delete();
   
-        return redirect()->route('category.index')
-                        ->with('success','Category deleted successfully');
+        return redirect()->route('project.index')
+                        ->with('success','Project deleted successfully');
     }
 }
