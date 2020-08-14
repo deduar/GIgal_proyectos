@@ -23,3 +23,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('category', 'CategoryController');
 Route::resource('project', 'ProjectController');
+Route::resource('subsidy','SubsidyController');

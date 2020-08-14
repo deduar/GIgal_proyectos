@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
-use App\Project;
-use App\User;
+use App\Subsidy;
 use Illuminate\Http\Request;
 
-class ProjectController extends Controller
+class SubsidyController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -18,16 +16,16 @@ class ProjectController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $projects = Project::latest()->paginate(2);
-        return view('projects.index',compact('projects'))->with('i',(request()->input('page',1)-1)*2);
+    { 
+        $subsidies = Subsidy::latest()->paginate(2);
+        return view('subsidy.index',compact('subsidies'))->with('i',(request()->input('page',1)-1)*2);
     }
 
     /**
@@ -37,9 +35,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        $categories = Category::all(['id','name']);
-        $users = User::all(['id','name']);
-        return view('projects.create',compact('categories','users'));
+        return view('subsidy.create');
     }
 
     /**
@@ -52,73 +48,70 @@ class ProjectController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'code' => 'required',
-            'url' => 'required',
-            'category_id' => 'required',
             'description' => 'required',
-            'user_id' => 'required',
+            'agency' => 'required',
         ]);
   
-        Project::create($request->all());
+        Subsidy::create($request->all());
    
-        return redirect()->route('project.index')
-                        ->with('success','Project created successfully.');
+        return redirect()->route('subsidy.index')
+                        ->with('success','Subsidy created successfully.');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Project  $project
+     * @param  \App\Subsidy  $subsidy
      * @return \Illuminate\Http\Response
      */
-    public function show(Project $project)
+    public function show(Subsidy $subsidy)
     {
-        return view('projects.show',compact('project'));
+        return view('subsidy.show',compact('subsidy'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Project  $project
+     * @param  \App\Subsidy  $subsidy
      * @return \Illuminate\Http\Response
      */
-    public function edit(Project $project)
+    public function edit(Subsidy $subsidy)
     {
-        return view('projects.edit',compact('project'));
+        return view('subsidy.edit',compact('subsidy'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Project  $project
+     * @param  \App\Subsidy  $subsidy
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Project $project)
+    public function update(Request $request, Subsidy $subsidy)
     {
         $request->validate([
             'name' => 'required',
-            'code' => 'required',
+            'agency' => 'required',
             'description' => 'required',
         ]);
   
-        $project->update($request->all());
+        $subsidy->update($request->all());
   
-        return redirect()->route('project.index')
-                        ->with('success','Project updated successfully');
+        return redirect()->route('subsidy.index')
+                        ->with('success','Subsidy updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Project  $project
+     * @param  \App\Subsidy  $subsidy
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Project $project)
+    public function destroy(Subsidy $subsidy)
     {
-        $project->delete();
+        $subsidy->delete();
   
-        return redirect()->route('project.index')
-                        ->with('success','Project deleted successfully');
+        return redirect()->route('subsidy.index')
+                        ->with('success','Subsidy deleted successfully');
     }
 }
