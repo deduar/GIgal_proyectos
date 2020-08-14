@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Project;
+use App\User;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -38,8 +39,8 @@ class ProjectController extends Controller
     public function create()
     {
         $categories = Category::all(['id','name']);
-        return view('projects.create',compact('categories'));
-        //return view('projects.create');
+        $users = User::all(['id','name']);
+        return view('projects.create',compact('categories','users'));
     }
 
     /**
@@ -53,8 +54,10 @@ class ProjectController extends Controller
         $request->validate([
             'name' => 'required',
             'code' => 'required',
+            'url' => 'required',
             'category_id' => 'required',
             'description' => 'required',
+            'user_id' => 'required',
         ]);
   
         Project::create($request->all());

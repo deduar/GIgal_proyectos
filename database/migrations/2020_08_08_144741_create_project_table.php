@@ -17,10 +17,13 @@ class CreateProjectTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('code');
+            $table->string('url');
             $table->text('description');
             $table->unsignedBigInteger('category_id');
-            $table->timestamps();
+            $table->unsignedBigInteger('user_id');
             $table->foreign('category_id')->references('id')->on('category')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

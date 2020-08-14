@@ -70,8 +70,26 @@
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
+                                    <strong>Url:</strong>
+                                    <input type="text" name="url" value="{{ $project->url }}" class="form-control" placeholder="Url">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <strong>Owner:</strong>
+                                    <input type="text" name="user_id" value="{{ $project->user->name }}" class="form-control" placeholder="Owner">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
                                     <strong>Code:</strong>
                                     <input type="text" name="code" value="{{ $project->code }}" class="form-control" placeholder="Code">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <strong>Category:</strong>
+                                    <input type="text" name="category" value="{{ $project->category->name }}" class="form-control" placeholder="Category">
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12">

@@ -48,8 +48,16 @@
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
+                                <strong>Owner:</strong>
+                                {{ $project->user->name }}
+                            </div>
+                            <div class="form-group">
                                 <strong>Name:</strong>
                                 {{ $project->name }}
+                            </div>
+                            <div class="form-group">
+                                <strong>Url:</strong>
+                                {{ $project->url }}
                             </div>
                             <div class="form-group">
                                 <strong>Code:</strong>
@@ -57,14 +65,14 @@
                             </div>
                             <div class="form-group">
                                 <strong>Category:</strong>
-                                {{ $project->category->name }}
-                                <p>{{ $project->category->description }}</p>
+                                {{ $project->category->name }} ||
+                                {{ $project->category->description }}
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <strong>Description:</strong>
-                                {{ $project->description }}
+                                <hr/>{{ $project->description }}
                             </div>
                         </div>
                     </div>

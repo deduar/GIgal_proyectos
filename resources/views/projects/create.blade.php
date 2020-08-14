@@ -67,6 +67,29 @@
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
+                                    <strong>Url:</strong>
+                                    <input type="text" name="url" class="form-control" placeholder="Url">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <strong>Owner: </strong>
+                                    <select class="form-control input-lg" id="user_id" name="user_id" >
+                                        <option></option>
+                                        @foreach($users as $user)
+                                            <option 
+                                                @if(Auth::user()->id == $user->id)
+                                                    value="{{ $user->id }}" selected>{{ $user->name }}
+                                                @else
+                                                    value="{{ $user->id }}">{{ $user->name }} 
+                                                @endif
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
                                     <strong>Code:</strong>
                                     <input type="text" name="code" class="form-control" placeholder="Code">
                                 </div>

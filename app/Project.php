@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Project extends Model
 {
     protected $table = 'project';
-    protected $fillable = ['name','code','category_id','description'];
+    protected $fillable = ['name','code','url','category_id','description','user_id'];
 
     /**
      * Get the category record associated with the project.
@@ -16,4 +16,13 @@ class Project extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    /**
+     * Get the user record associated with the project.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }

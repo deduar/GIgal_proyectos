@@ -52,14 +52,16 @@
                     <table class="table table-bordered">
                         <tr>
                             <th>Name</th>
+                            <th>Owner</th>
                             <th>Code</th>
                             <th>Category</th>
                             <th>Description</th>
                             <th width="250px">Action</th>
                         </tr>
                         @foreach ($projects as $project)
-                        <tr>
+                        <tr> 
                             <td>{{ $project->name }}</td>
+                            <td>{{ $project->user->name }}</td>
                             <td>{{ $project->code }}</td>
                             <td>{{ $project->category->name }}</td>
                             <td>{{ $project->description }}</td>
